@@ -3,35 +3,38 @@ import axios from "axios";
 
 class Me extends React.Component {
   state = {
-    persons: [],
-    showMe: false,
+    routes: [],
+    stops: [],
   };
 
   componentDidMount() {
-    axios.get(`https://api.metro.net/agencies/lametro/routes/`).then((res) => {
-      const persons = res.data.items;
-      this.setState({ persons });
-      console.log(this.state.persons);
+    axios.get("https://api.metro.net/agencies/lametro/routes/").then((res) => {
+      const routes = res.data.items;
+      this.setState({ routes });
     });
-  }
 
-  oP() {
-    this.setState({
-      showMe: !this.state.showMe,
-    });
+    axios
+      .get("https://api.metro.net/agencies/lametro/routes/" + 51 + "/stops/")
+      .then((res) => {
+        const stops = res.data.items;
+        this.setState({ stops });
+      });
   }
 
   render() {
     return (
       <div>
-        <button onClick={() => this.oP()}>Click Me</button>
-        {this.state.showMe ? (
-          <div>
-            {this.state.persons.map((person) => (
-              <li>{person.id}</li>
-            ))}
-          </div>
-        ) : null}
+        <select className="ui dropdown">
+          {this.state.routes.map((route) => (
+            <option value="">{route.display_name}</option>
+          ))}
+        </select>
+
+        <select className="ui dropdown">
+          {this.state.stops.map((stop) => (
+            <option value="">{stop.display_name}</option>
+          ))}
+        </select>
       </div>
     );
   }
