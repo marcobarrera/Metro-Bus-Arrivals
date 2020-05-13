@@ -1,11 +1,11 @@
 import React from "react";
-import Me from "./Po";
+import Metro from "./Po";
 
-export default class Metro extends React.Component {
+export default class App extends React.Component {
   render() {
     return (
       <div>
-        <Me />
+        <Metro />
       </div>
     );
   }
