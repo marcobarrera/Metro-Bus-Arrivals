@@ -33,7 +33,6 @@ class Metro extends React.Component {
       .then((res) => {
         const times = res.data.items[0];
         this.setState({ times });
-        console.log(times);
       });
   }
 
