@@ -1,5 +1,6 @@
 import React from "react";
 import axios from "axios";
+import { Dropdowns, ArrivalTime } from "./Dropdowns";
 import "./Metro.css";
 
 class Metro extends React.Component {
@@ -68,43 +69,34 @@ class Metro extends React.Component {
     return (
       <div id="container" className="ui container ui list">
         <h1>Bus Arrivals</h1>
-        <div className="item">
-          <h2 className="ui header">
-            <div className="sub header">Choose Route:</div>
-          </h2>
-          <select
-            id="line"
-            className="ui search selection dropdown large"
-            onChange={this.metroLine.bind(this)}
-          >
-            {this.state.routes.map((route) => (
-              <option value={route.id}>{route.display_name}</option>
-            ))}
-          </select>
-        </div>
 
-        <div className="item">
-          <h2 className="ui header">
-            <div className="sub header">Choose Stop:</div>
-          </h2>
-          <select
-            id="stop"
-            className="ui search selection dropdown large"
-            onChange={this.metroStop.bind(this)}
-          >
-            {this.state.stops.map((stop) => (
-              <option value={stop.id}>{stop.display_name}</option>
-            ))}
-          </select>
-        </div>
+        <Dropdowns subHeader="Choose Route" />
+        <select
+          onChange={this.metroLine.bind(this)}
+          id="line"
+          className="ui search selection dropdown large"
+        >
+          {this.state.routes.map((route) => (
+            <option value={route.id}>{route.display_name}</option>
+          ))}
+        </select>
 
-        <div className="ui label large">
-          <h2 className="ui header">
-            <div className="sub header">Estimated Arrival:</div>
-          </h2>
-          <i className="clock icon large"></i>
-          {this.state.times.minutes} Minutes
-        </div>
+        <Dropdowns subHeader="Choose Stop" />
+        <select
+          id="stop"
+          className="ui search selection dropdown large"
+          onChange={this.metroStop.bind(this)}
+        >
+          {this.state.stops.map((stop) => (
+            <option value={stop.id}>{stop.display_name}</option>
+          ))}
+        </select>
+
+        <ArrivalTime
+          subHeader="Estimated Arrival:"
+          description="Minutes"
+          {...this.state}
+        />
       </div>
     );
   }
