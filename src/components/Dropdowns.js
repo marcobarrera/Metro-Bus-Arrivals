@@ -18,7 +18,7 @@ export const ArrivalTime = (props) => {
           <div className="sub header">{props.subHeader}</div>
         </h2>
         <i className="clock icon large"></i>
-        {props.times.minutes} {props.description}
+        {props.description} {props.minutes}
       </div>
     </div>
   );
