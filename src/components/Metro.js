@@ -7,7 +7,7 @@ class Metro extends React.Component {
   state = {
     routes: [],
     stops: [],
-    times: [],
+    minutes: [],
   };
 
   componentDidMount() {
@@ -21,19 +21,6 @@ class Metro extends React.Component {
       .then((res) => {
         const stops = res.data.items;
         this.setState({ stops });
-      });
-
-    axios
-      .get(
-        "https://api.metro.net/agencies/lametro/routes/" +
-          2 +
-          "/stops/" +
-          16291 +
-          "/predictions/"
-      )
-      .then((res) => {
-        const times = res.data.items[0];
-        this.setState({ times });
       });
   }
 
@@ -51,6 +38,7 @@ class Metro extends React.Component {
   metroStop() {
     var line = document.getElementById("line").value;
     var stop = document.getElementById("stop").value;
+
     axios
       .get(
         "https://api.metro.net/agencies/lametro/routes/" +
@@ -60,8 +48,12 @@ class Metro extends React.Component {
           "/predictions/"
       )
       .then((res) => {
-        const times = res.data.items[0];
-        this.setState({ times });
+        const time = res.data.items[0];
+        if (!time) this.setState({ minutes: "No Prediction" });
+        else {
+          const minutes = res.data.items[0].minutes;
+          this.setState({ minutes });
+        }
       });
   }
 
@@ -94,7 +86,7 @@ class Metro extends React.Component {
 
         <ArrivalTime
           subHeader="Estimated Arrival:"
-          description="Minutes"
+          description="Minutes:"
           {...this.state}
         />
       </div>
