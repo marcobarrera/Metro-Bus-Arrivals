@@ -1,24 +1,25 @@
 body {
-  background-color: gray;
-  margin: auto;
-  text-align: center;
+    background-color: #505160;
+    margin: auto;
+    text-align: center;
 }
+
 h1 {
-  color: white;
-  padding-top: 15px;
+    color: white;
+    padding-top: 15px;
 }
 
 #container {
-  width: 50%;
-  text-align: center;
-  position: fixed;
-  top: 50%;
-  left: 47%;
-  /* bring your own prefixes */
-  transform: translate(-50%, -50%);
-  overflow: hidden;
+    width: 50%;
+    text-align: center;
+    position: fixed;
+    top: 50%;
+    left: 47%;
+    /* bring your own prefixes */
+    transform: translate(-50%, -50%);
+    overflow: hidden;
 }
 
 select {
-  margin: 5% 0;
+    margin: 5% 0;
 }
