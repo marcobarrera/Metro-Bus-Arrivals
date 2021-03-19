@@ -1,5 +1,8 @@
 # Metro Bus Arrivals
 
+## Demo
+<img src="demo.gif" alt="demo" width="300"/>
+
 ## Description
 
 Web app that allows the user to look up real-time arrivals for a LA Metro bus by bus line and bus stop.
